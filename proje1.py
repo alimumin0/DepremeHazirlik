@@ -1,11 +1,9 @@
+import pandas as pd
+data = pd.DataFrame(pd.read_csv("database.csv"))
 print("***Hoşgeldiniz***")
+mobilOneri = ["AFAD ACİL AFAD Acil mobil uygulaması, tek tuşla acil çağrıyapabiliyor.", "DÜDÜĞÜM Enkaz veya acil durumlarda düdük sesi çıkartarak konumunuzun belirlenmesine yardımcı olur." ,"112 ACİL YARDIM BUTONU acil müdahale gerektiren birolayda acil servisi haberdar edebilir ve uygulamanın göndereceği konum bilgisiyle,size en kısa sürede ulaşılmasını sağlayabilirsiniz"]
 kullaniciAdmin = ["admin"]
 sifreAdmin = ["12345"]
-asamaList = ['Dolap üzerlerinde yer alan malzemelerin, kayıp düşmesini engellemek adına plastik tutucu malzemeler ve/veya yapıştırıcı kullanınız.',
-             'Kullandığınız ısıtıcılar mutlaka yere veya duvara sabitleyiniz.',
-             'Devrilebilecek ağır eşyalar ve dolaplar mutlaka birbirine ve duvara sabitleyiniz.',
-             'İçlerinde ağır eşyalar barındıran dolapların kapakları, mekanik kilitler yardımı ile güvenli hale getiriniz.',
-             'Zehirli, patlayıcı, yanıcı maddeler düşmeyecek bir konumda sabitlenmeli ve kırılmayacak bir şekilde depolanmalıdır. Bu maddelerin üzerlerine fosforlu, belirleyici etiketler koyunuz.']
 while True:
     menuSecim = int(input("""Devam etmek için rakamları tuşlayınız
 
@@ -13,9 +11,7 @@ while True:
     Sisteme üye olmak için 2'ye
     Şifre değişikliği için 3'e  basınız.\n"""))
 
-
-
-    if (menuSecim == 1):
+    if (menuSecim == 1): 
         while(True):
             kullaniciAdi = input("Kullanici Adinizi girininiz.\n")
             sifre = (input("Şifrenizi giriniz.\n"))
@@ -31,29 +27,42 @@ while True:
                 print("Kullanıcı adı ve şifre hatalı")
                 continue
         print("Başarıyla giriş yaptınız.")
-        if (kullaniciAdi == kullaniciAdmin[0] and sifre == sifreAdmin[0]):
-            print("Hoşgeldin admin")
-            while True:
-                adminMenu = int(input("""Devam etmek için rakamları tuşlayınız
+        #if (kullaniciAdi == kullaniciAdmin[0] and sifre == sifreAdmin[0]):
+         #   print("Hoşgeldin admin")
+          #  while True:
+           #     adminMenu = int(input("""Devam etmek için rakamları tuşlayınız
 
-    Yeni aşama girişi yapmak için 1'e
-    Varolan aşamayı değiştirmek için 2'ye
-    Çıkış yapmak için 3'e  basınız.\n"""))
-                if(adminMenu == 1):
-                    yeniAsama = input("Yeni aşamayı giriniz.\n")
-                    asamaList += [yeniAsama]
-                    print(asamaList)
-                elif(adminMenu == 2):
-                    degisecekAsama = input("Değişecek olan aşamayı yazınız.\n")
-                    degisecekIndex = asamaList.index(degisecekAsama)
-                    yeniAsama = input("Yeni aşamayı giriniz.\n")
-                    asamaList.insert(degisecekIndex,yeniAsama)
-                    print(asamaList)                
-                elif(adminMenu == 3):
-                    break
+    #Yeni aşama girişi yapmak için 1'e
+    #Varolan aşamayı değiştirmek için 2'ye
+    #Çıkış yapmak için 3'e  basınız.\n"""))
+    #            if(adminMenu == 1):
+     #               yeniAsama = input("Yeni aşamayı giriniz.\n")
+      #              asamaList += [yeniAsama]
+       #             print(asamaList)
+        #        elif(adminMenu == 2):
+         #           degisecekAsama = input("Değişecek olan aşamayı yazınız.\n")
+          #          degisecekIndex = asamaList.index(degisecekAsama)
+           #         yeniAsama = input("Yeni aşamayı giriniz.\n")
+            #        asamaList.insert(degisecekIndex,yeniAsama)
+             #       print(asamaList)                
+              #  elif(adminMenu == 3):
+               #     break
                 
+                #else:
+                 #   continue
+        print("Aşamalar Sırasıyla gelicektir.")
+        for i in range(len(data)):
+            while (True):
+                print("{}. adım {}\n".format(i+1,data.loc[i,"Maddeler"]))
+                asamaKontol = input("Bu aşamayı tamamladıysanız devam yazınız.\n")
+                if(asamaKontol == "devam"):
+                    break
                 else:
-                    continue
+                  continue   
+        print("Tebrikler! Bütün aşamaları tamamladınız.\n\n\n")
+        print("”Deprem öncesinde evinizdeki önlemleri aldınız. Geriye akıllı telefonlarınızda bulunması gereken uygulamalar kaldı.\n")
+        for i in range(len(mobilOneri)):
+            print(mobilOneri[i])     
         break
 
     elif(menuSecim == 2):
